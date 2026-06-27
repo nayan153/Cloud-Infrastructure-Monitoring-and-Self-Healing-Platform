@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Project paths
-LOG_DIR="/home/nayan/projects/Cloud-Infrastructure-Monitoring-and-Self-Healing-Platform/logs"
-BACKUP_DIR="/home/nayan/projects/Cloud-Infrastructure-Monitoring-and-Self-Healing-Platform/log-backups"
+LOG_DIR="/home/ubuntu/Cloud-Infrastructure-Monitoring-and-Self-Healing-Platform/logs"
+BACKUP_DIR="/home/ubuntu/Cloud-Infrastructure-Monitoring-and-Self-Healing-Platform/backup"
 
 # Backup directory create if not exists
-mkdir -p "$BACKUP_DIR"
+sudo mkdir -p "$BACKUP_DIR"
+
 
 # Current timestamp
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
@@ -18,8 +19,8 @@ do
 
     FILE_SIZE=$(stat -c%s "$LOG_FILE")
 
-    # 1 MB = 10240 bytes
-    if [ "$FILE_SIZE" -gt 10240 ]
+    # 1 MB = 1024 bytes
+    if [ "$FILE_SIZE" -gt 1024 ]
     then
         FILE_NAME=$(basename "$LOG_FILE")
 
@@ -34,6 +35,6 @@ do
         echo "$(date) | Backup completed for $FILE_NAME"
     fi
 done
-
+echo "DONE"
 # Delete backups older than 7 days
 find "$BACKUP_DIR" -type f -name "*.gz" -mtime +7 -delete
