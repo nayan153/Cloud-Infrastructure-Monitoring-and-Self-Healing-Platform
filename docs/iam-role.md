@@ -4,41 +4,45 @@
 
 To allow the EC2 instance to communicate with AWS services securely, I created an IAM Role and attached it to the instance.
 
-Using an IAM Role removes the need to store AWS access keys on the server. AWS automatically provides temporary credentials whenever the instance needs to access AWS services.
+Using an IAM Role removes the need to store AWS access keys on the server. AWS automatically provides temporary credentials to the EC2 instance whenever it needs to access supported services.
 
 ---
 
-## Permission
+## IAM Policy
 
-The following managed policy was attached to the IAM Role:
+The EC2 instance was assigned the following AWS managed policy:
 
 * CloudWatchAgentServerPolicy
 
-This policy allows the CloudWatch Agent to send metrics and log data to Amazon CloudWatch.
+This policy allows the CloudWatch Agent to send system metrics and log data to Amazon CloudWatch.
 
 ---
 
-## Configuration
+## Role Attachment
 
-After creating the IAM Role, I attached it to the EC2 instance using the AWS Management Console.
+After creating the role, it was attached directly to the EC2 instance.
 
-I verified the configuration by checking the EC2 metadata service, which confirmed that the IAM Role was available on the instance.
+This allows applications running on the server to access AWS services without configuring access keys manually.
 
 ---
 
 ## Verification
 
-To verify the configuration, I ran:
+To verify the configuration, I checked the EC2 instance metadata.
 
 ```bash
-curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+-H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+http://169.254.169.254/latest/meta-data/iam/security-credentials/
 ```
 
-The command returned the IAM Role name, confirming that the role was attached successfully.
+The command returned the attached IAM role, confirming that the instance was able to retrieve temporary AWS credentials.
 
 ---
 
 ## Result
 
-The EC2 instance can now securely access AWS services without storing long-term access keys. This follows AWS security best practices and makes the project easier to manage.
+The EC2 instance can now securely interact with AWS services using IAM Roles. This follows AWS security best practices and avoids storing long-term credentials on the server.
 
