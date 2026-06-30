@@ -1,0 +1,79 @@
+{
+    "widgets": [
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 0,
+            "width": 18,
+            "height": 4,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "CloudMonitoring", "disk_used_percent", "path", "/", "InstanceId", "i-00e6421ef43550e3a", "device", "nvme0n1p1", "fstype", "ext4" ]
+                ],
+                "region": "ap-south-1"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 4,
+            "width": 9,
+            "height": 4,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-00e6421ef43550e3a" ]
+                ],
+                "region": "ap-south-1"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 9,
+            "y": 4,
+            "width": 9,
+            "height": 4,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "NetworkIn", "InstanceId", "i-00e6421ef43550e3a" ]
+                ],
+                "region": "ap-south-1"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 8,
+            "width": 9,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "NetworkOut", "InstanceId", "i-00e6421ef43550e3a" ]
+                ],
+                "region": "ap-south-1"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 9,
+            "y": 8,
+            "width": 9,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "StatusCheckFailed_Instance", "InstanceId", "i-00e6421ef43550e3a" ]
+                ],
+                "region": "ap-south-1"
+            }
+        }
+    ]
+}
