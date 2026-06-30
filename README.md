@@ -5,7 +5,7 @@
 <p align="center">
   <img src="assets/logo.png" width="150" alt="Project Logo">
 </p>
-# ☁️ Cloud Infrastructure Monitoring & Self-Healing Platform
+☁️ Cloud Infrastructure Monitoring & Self-Healing Platform
 
 A cloud-based monitoring platform built on AWS that keeps track of server health, records important system metrics, and performs basic recovery actions when common service failures are detected.
 
