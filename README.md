@@ -73,11 +73,11 @@ The main goal of this project was to gain practical experience with cloud monito
 The following diagram shows how different components work together in this project.
 
 <p align="center">
-  <img src="architecture/aws-architecture.png" alt="Project Architecture" width="100%">
+  <img src="assets/aws-architecture.png" alt="Project Architecture" width="100%">
 </p>
 
 <p align="center">
-  <img src="architecture/architecture.png" alt="Project Architecture" width="100%">
+  <img src="assets/architecture.png" alt="Project Architecture" width="100%">
 </p>
 
 The monitoring platform runs on an Ubuntu EC2 instance. Node Exporter collects system metrics, Prometheus stores those metrics, and Grafana displays them through dashboards. At the same time, the CloudWatch Agent sends metrics and logs to Amazon CloudWatch, where alarms can trigger email notifications using Amazon SNS.
